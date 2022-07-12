@@ -1,23 +1,18 @@
-import 'simplebar/src/simplebar.css';
+import 'simplebar/src/simplebar.css'
 
-import PropTypes from 'prop-types';
-import { useMemo } from 'react';
-// material
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
-//
-import palette from './palette';
-import typography from './typography';
-import componentsOverride from './overrides';
-import shadows, { customShadows } from './shadows';
+import React, { useMemo } from 'react'
+import PropTypes from 'prop-types'
 
-// ----------------------------------------------------------------------
+import { CssBaseline } from '@mui/material'
+import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles'
 
-ThemeProvider.propTypes = {
-  children: PropTypes.node,
-};
+import palette from './palette'
+import typography from './typography'
+import componentsOverride from './overrides'
+import shadows, { customShadows } from './shadows'
 
-export default function ThemeProvider({ children }) {
+export default function ThemeProvider(props){
+  const { children } = props
   const themeOptions = useMemo(
     () => ({
       palette,
@@ -26,11 +21,11 @@ export default function ThemeProvider({ children }) {
       shadows,
       customShadows,
     }),
-    []
-  );
+    [],
+  )
 
-  const theme = createTheme(themeOptions);
-  theme.components = componentsOverride(theme);
+  const theme = createTheme(themeOptions)
+  theme.components = componentsOverride(theme)
 
   return (
     <StyledEngineProvider injectFirst>
@@ -39,5 +34,9 @@ export default function ThemeProvider({ children }) {
         {children}
       </MUIThemeProvider>
     </StyledEngineProvider>
-  );
+  )
+}
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node,
 }

@@ -1,8 +1,9 @@
-import { Container, Typography } from '@mui/material';
+import React from 'react'
+import { Container, Typography } from '@mui/material'
 
-import Page from '../components/Page';
+import Page from '../components/Page'
 
-export default function DashboardApp() {
+export default function DashboardApp(){
   return (
     <Page title="Dashboard">
       <Container maxWidth="xl">
@@ -11,5 +12,5 @@ export default function DashboardApp() {
         </Typography>
       </Container>
     </Page>
-  );
+  )
 }

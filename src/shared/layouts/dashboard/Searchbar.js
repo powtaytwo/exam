@@ -1,14 +1,12 @@
-import { useState } from 'react';
-// material
-import { styled, alpha } from '@mui/material/styles';
-import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener } from '@mui/material';
-// component
-import Iconify from '../../components/Iconify';
+import React, { useState } from 'react'
 
-// ----------------------------------------------------------------------
+import { styled, alpha } from '@mui/material/styles'
+import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener } from '@mui/material'
 
-const APPBAR_MOBILE = 64;
-const APPBAR_DESKTOP = 92;
+import Iconify from '../../components/Iconify'
+
+const APPBAR_MOBILE = 64
+const APPBAR_DESKTOP = 92
 
 const SearchbarStyle = styled('div')(({ theme }) => ({
   top: 0,
@@ -28,20 +26,18 @@ const SearchbarStyle = styled('div')(({ theme }) => ({
     height: APPBAR_DESKTOP,
     padding: theme.spacing(0, 5),
   },
-}));
+}))
 
-// ----------------------------------------------------------------------
-
-export default function Searchbar() {
-  const [isOpen, setOpen] = useState(false);
+export default function Searchbar(){
+  const [isOpen, setOpen] = useState(false)
 
   const handleOpen = () => {
-    setOpen((prev) => !prev);
-  };
+    setOpen(prev => !prev)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
@@ -59,11 +55,11 @@ export default function Searchbar() {
               fullWidth
               disableUnderline
               placeholder="Search…"
-              startAdornment={
+              startAdornment={(
                 <InputAdornment position="start">
                   <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
                 </InputAdornment>
-              }
+              )}
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
             <Button variant="contained" onClick={handleClose}>
@@ -73,5 +69,5 @@ export default function Searchbar() {
         </Slide>
       </div>
     </ClickAwayListener>
-  );
+  )
 }

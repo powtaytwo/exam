@@ -1,11 +1,9 @@
-import { useRef, useState } from 'react';
-// material
-import { alpha } from '@mui/material/styles';
-import { Box, MenuItem, Stack, IconButton } from '@mui/material';
-// components
-import MenuPopover from '../../components/MenuPopover';
+import React, { useRef, useState } from 'react'
 
-// ----------------------------------------------------------------------
+import { alpha } from '@mui/material/styles'
+import { Box, MenuItem, Stack, IconButton } from '@mui/material'
+
+import MenuPopover from '../../components/MenuPopover'
 
 const LANGS = [
   {
@@ -23,21 +21,19 @@ const LANGS = [
     label: 'French',
     icon: '/static/icons/ic_flag_fr.svg',
   },
-];
+]
 
-// ----------------------------------------------------------------------
-
-export default function LanguagePopover() {
-  const anchorRef = useRef(null);
-  const [open, setOpen] = useState(false);
+export default function LanguagePopover(){
+  const anchorRef = useRef(null)
+  const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
@@ -49,7 +45,7 @@ export default function LanguagePopover() {
           width: 44,
           height: 44,
           ...(open && {
-            bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
+            bgcolor: theme => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
           }),
         }}
       >
@@ -68,7 +64,7 @@ export default function LanguagePopover() {
         }}
       >
         <Stack spacing={0.75}>
-          {LANGS.map((option) => (
+          {LANGS.map(option => (
             <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
 
@@ -78,5 +74,5 @@ export default function LanguagePopover() {
         </Stack>
       </MenuPopover>
     </>
-  );
+  )
 }

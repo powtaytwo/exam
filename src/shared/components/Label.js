@@ -1,27 +1,28 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { alpha, styled } from '@mui/material/styles'
 import { Box } from '@mui/material'
 
 const RootStyle = styled('span')(({ theme, ownerState }) => {
-  const isLight = theme.palette.mode === 'light';
-  const { color, variant } = ownerState;
+  const isLight = theme.palette.mode === 'light'
+  const { color, variant } = ownerState
 
-  const styleFilled = (color) => ({
-    color: theme.palette[color].contrastText,
-    backgroundColor: theme.palette[color].main,
-  });
+  const styleFilled = xcolor => ({
+    color: theme.palette[xcolor].contrastText,
+    backgroundColor: theme.palette[xcolor].main,
+  })
 
-  const styleOutlined = (color) => ({
-    color: theme.palette[color].main,
+  const styleOutlined = xcolor => ({
+    color: theme.palette[xcolor].main,
     backgroundColor: 'transparent',
-    border: `1px solid ${theme.palette[color].main}`,
-  });
+    border: `1px solid ${theme.palette[xcolor].main}`,
+  })
 
-  const styleGhost = (color) => ({
-    color: theme.palette[color][isLight ? 'dark' : 'light'],
-    backgroundColor: alpha(theme.palette[color].main, 0.16),
-  });
+  const styleGhost = xcolor => ({
+    color: theme.palette[xcolor][isLight ? 'dark' : 'light'],
+    backgroundColor: alpha(theme.palette[xcolor].main, 0.16),
+  })
 
   return {
     height: 22,
@@ -57,26 +58,16 @@ const RootStyle = styled('span')(({ theme, ownerState }) => {
             backgroundColor: theme.palette.grey[500_16],
           }),
         }),
-  };
-});
+  }
+})
 
-// ----------------------------------------------------------------------
-
-Label.propTypes = {
-  children: PropTypes.node,
-  startIcon: PropTypes.node,
-  endIcon: PropTypes.node,
-  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
-  variant: PropTypes.oneOf(['filled', 'outlined', 'ghost']),
-  sx: PropTypes.object,
-};
-
-export default function Label({ children, color = 'default', variant = 'ghost', startIcon, endIcon, sx }) {
+export default function Label(props){
+  const { children, color = 'default', variant = 'ghost', startIcon, endIcon, sx } = props
   const style = {
     width: 16,
     height: 16,
     '& svg, img': { width: 1, height: 1, objectFit: 'cover' },
-  };
+  }
 
   return (
     <RootStyle
@@ -93,5 +84,14 @@ export default function Label({ children, color = 'default', variant = 'ghost', 
 
       {endIcon && <Box sx={{ ml: 0.75, ...style }}>{endIcon}</Box>}
     </RootStyle>
-  );
+  )
+}
+
+Label.propTypes = {
+  children: PropTypes.node,
+  startIcon: PropTypes.node,
+  endIcon: PropTypes.node,
+  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'ghost']),
+  sx: PropTypes.object,
 }

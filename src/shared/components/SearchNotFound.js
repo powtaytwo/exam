@@ -1,14 +1,11 @@
-import PropTypes from 'prop-types';
-// material
-import { Paper, Typography } from '@mui/material';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-// ----------------------------------------------------------------------
+import { Paper, Typography } from '@mui/material'
 
-SearchNotFound.propTypes = {
-  searchQuery: PropTypes.string,
-};
+export default function SearchNotFound(props){
+  const { searchQuery = '', ...other } = props
 
-export default function SearchNotFound({ searchQuery = '', ...other }) {
   return (
     <Paper {...other}>
       <Typography gutterBottom align="center" variant="subtitle1">
@@ -19,5 +16,9 @@ export default function SearchNotFound({ searchQuery = '', ...other }) {
         <strong>&quot;{searchQuery}&quot;</strong>. Try checking for typos or using complete words.
       </Typography>
     </Paper>
-  );
+  )
+}
+
+SearchNotFound.propTypes = {
+  searchQuery: PropTypes.string,
 }

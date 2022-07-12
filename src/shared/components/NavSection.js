@@ -1,22 +1,20 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom';
-// material
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
-//
-import Iconify from './Iconify';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom'
 
-// ----------------------------------------------------------------------
+import { alpha, useTheme, styled } from '@mui/material/styles'
+import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material'
 
-const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props} />)(({ theme }) => ({
+import Iconify from './Iconify'
+
+const ListItemStyle = styled(props => <ListItemButton disableGutters {...props} />)(({ theme }) => ({
   ...theme.typography.body2,
   height: 48,
   position: 'relative',
   textTransform: 'capitalize',
   color: theme.palette.text.secondary,
   borderRadius: theme.shape.borderRadius,
-}));
+}))
 
 const ListItemIconStyle = styled(ListItemIcon)({
   width: 22,
@@ -25,40 +23,36 @@ const ListItemIconStyle = styled(ListItemIcon)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-});
+})
 
 // ----------------------------------------------------------------------
 
-NavItem.propTypes = {
-  item: PropTypes.object,
-  active: PropTypes.func,
-};
+function NavItem(props){
+  const { item, active } = props
+  const theme = useTheme()
 
-function NavItem({ item, active }) {
-  const theme = useTheme();
+  const isActiveRoot = active(item.path)
 
-  const isActiveRoot = active(item.path);
+  const { title, path, icon, info, children } = item
 
-  const { title, path, icon, info, children } = item;
-
-  const [open, setOpen] = useState(isActiveRoot);
+  const [open, setOpen] = useState(isActiveRoot)
 
   const handleOpen = () => {
-    setOpen((prev) => !prev);
-  };
+    setOpen(prev => !prev)
+  }
 
   const activeRootStyle = {
     color: 'primary.main',
     fontWeight: 'fontWeightMedium',
     bgcolor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-  };
+  }
 
   const activeSubStyle = {
     color: 'text.primary',
     fontWeight: 'fontWeightMedium',
-  };
+  }
 
-  if (children) {
+  if (children){
     return (
       <>
         <ListItemStyle
@@ -78,15 +72,15 @@ function NavItem({ item, active }) {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {children.map((item) => {
-              const { title, path } = item;
-              const isActiveSub = active(path);
+            {children.map((child) => {
+              const { title: childTitle, path: childPath } = child
+              const isActiveSub = active(childPath)
 
               return (
                 <ListItemStyle
-                  key={title}
+                  key={childTitle}
                   component={RouterLink}
-                  to={path}
+                  to={childPath}
                   sx={{
                     ...(isActiveSub && activeSubStyle),
                   }}
@@ -102,7 +96,7 @@ function NavItem({ item, active }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         bgcolor: 'text.disabled',
-                        transition: (theme) => theme.transitions.create('transform'),
+                        transition: x => x.transitions.create('transform'),
                         ...(isActiveSub && {
                           transform: 'scale(2)',
                           bgcolor: 'primary.main',
@@ -110,14 +104,14 @@ function NavItem({ item, active }) {
                       }}
                     />
                   </ListItemIconStyle>
-                  <ListItemText disableTypography primary={title} />
+                  <ListItemText disableTypography primary={childTitle} />
                 </ListItemStyle>
-              );
+              )
             })}
           </List>
         </Collapse>
       </>
-    );
+    )
   }
 
   return (
@@ -132,25 +126,31 @@ function NavItem({ item, active }) {
       <ListItemText disableTypography primary={title} />
       {info && info}
     </ListItemStyle>
-  );
+  )
 }
 
-NavSection.propTypes = {
-  navConfig: PropTypes.array,
-};
+NavItem.propTypes = {
+  item: PropTypes.object,
+  active: PropTypes.func,
+}
 
-export default function NavSection({ navConfig, ...other }) {
-  const { pathname } = useLocation();
+export default function NavSection(props){
+  const { navConfig, ...other } = props
+  const { pathname } = useLocation()
 
-  const match = (path) => (path ? !!matchPath({ path, end: false }, pathname) : false);
+  const match = path => (path ? !!matchPath({ path, end: false }, pathname) : false)
 
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
-        {navConfig.map((item) => (
+        {navConfig.map(item => (
           <NavItem key={item.title} item={item} active={match} />
         ))}
       </List>
     </Box>
-  );
+  )
+}
+
+NavSection.propTypes = {
+  navConfig: PropTypes.array,
 }

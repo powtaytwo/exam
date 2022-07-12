@@ -6,5 +6,5 @@ export const Schemas = {
   USER: user,
   USER_ARRAY: [user],
 }
-  
+
 export default Schemas
