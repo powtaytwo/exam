@@ -1,11 +1,12 @@
 
+import React from 'react'
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { useSelector } from 'react-redux'
 import useReduxAction from '../../../shared/hooks/useReduxAction'
+import useSetState from '../../../shared/hooks/useSetState'
 
 import {
   Avatar, Button, Card, Checkbox, Container, Stack,
@@ -21,6 +22,7 @@ import SearchNotFound from '../../../shared/components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from './components'
 
 import userList from '../../../shared/_mock/user'
+import PageContext from '../../../shared/contexts/pageContext'
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
@@ -60,9 +62,20 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
+const defaultState = {
+  filterName: '',
+  order: 'asc',
+  orderBy: 'name',
+  page: 0,
+  rowsPerPage: 5,
+  selected: [],
+}
+
 const User = () => {
-  const entities = useSelector(reduxState => reduxState.entities)
-  //const { users } = entities
+  const [state, setState] = useSetState(defaultState)
+  const { filterName, order, orderBy, page, rowsPerPage, selected } = state
+
+
 
   useReduxAction('users', 'loadUsers', {}, [], {
     shouldPerformFn: (entityReducer) => {
@@ -71,33 +84,28 @@ const User = () => {
     },
   })
 
+  const entities = useSelector(reduxState => reduxState.entities)
+  //const { users } = entities
+
   console.log(entities)
 
-  const [page, setPage] = useState(0);
-
-  const [order, setOrder] = useState('asc');
-
-  const [selected, setSelected] = useState([]);
-
-  const [orderBy, setOrderBy] = useState('name');
-
-  const [filterName, setFilterName] = useState('');
-
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  //console.log(entities)
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
+    setState({
+      order: isAsc ? 'desc' : 'asc',
+      orderBy: property
+    })
+  }
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = userList.map((n) => n.name);
-      setSelected(newSelecteds);
+      setState({ selected: newSelecteds })
       return;
     }
-    setSelected([]);
+    setState({ selected: [] })
   };
 
   const handleClick = (event, name) => {
@@ -112,21 +120,23 @@ const User = () => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
     }
-    setSelected(newSelected);
-  };
+    setState({ selected: newSelected })
+  }
 
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+    setState({ page: newPage });
+  }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+    setState({
+      page: 0,
+      rowsPerPage: parseInt(event.target.value, 10),
+    })
+  }
 
   const handleFilterByName = (event) => {
-    setFilterName(event.target.value);
-  };
+    setState({ filterNmae: event.target.value })
+  }
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userList.length) : 0;
 
@@ -135,6 +145,7 @@ const User = () => {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
+    // <PageContext.Provider>
     <Page title="User">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -233,6 +244,7 @@ const User = () => {
         </Card>
       </Container>
     </Page>
+    // </PageContext.Provider>
   )
 }
 

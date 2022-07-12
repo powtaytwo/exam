@@ -1,18 +1,17 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import ThemeProvider from './theme'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 
+import ThemeProvider from './theme'
+
 import createRootReducer from './shared/redux/rootReducer'
 import lastModifiedMiddleware from './shared/redux/middleware/lastModified'
-
 import ScrollToTop from './shared/components/ScrollToTop'
-
 import BackOfficeRoutes from './BackOffice/routes'
 
-import './App.css';
+import './App.css'
 
 const store = configureStore({
   reducer: createRootReducer(),
@@ -24,7 +23,7 @@ const store = configureStore({
   }).concat(lastModifiedMiddleware),
 })
 
-const App = () => {
+function App(){
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -39,4 +38,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

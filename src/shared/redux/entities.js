@@ -82,7 +82,7 @@ function mergeEntities(entityKeys, currentState, action, options = {}){
 
 export function digObject(target, keyString, defaultValue){
     const keys = keyString.split('.')
-  
+
     const value = keys.reduce(
       (acc, key) => {
         const accValue = typeof acc === 'undefined' || acc === null ? acc : acc[key]
@@ -90,15 +90,14 @@ export function digObject(target, keyString, defaultValue){
       },
       { ...target },
     )
-  
+
     if (value === null || value === undefined) return defaultValue
-  
+
     return value
   }
 
 // Reducers
 function addEntities(state, action){
-  debugger
   const options = digObject(action, '_options', {})
 
   const keys = cleanKeys(Object.keys(action), ['type', '_options'])

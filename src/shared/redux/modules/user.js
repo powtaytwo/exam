@@ -38,22 +38,30 @@ export function fetchFailure(errors = []){
   }
 }
 
-
-export function loadUsers(options){
+export function loadUsers(){
   return (dispatch) => {
     dispatch(fetchRequest())
 
     const promise = new Promise((resolve, reject) => {
-      if(users.length){
-        const normalizedJson = normalize(users, Schemas.USER_ARRAY)
-        dispatch(updateEntities(normalizedJson))
-        dispatch(fetchSuccess())
-    
-        return resolve({ success: true, users })
+      if (users.length){
+        resolve({ data: users })
+        return
       }
-      return reject(new Error('no data'))
+
+      reject(new Error('No data'))
+    }).then(({ data }) => {
+      const normalizedJson = normalize(data, Schemas.USER_ARRAY)
+      dispatch(updateEntities(normalizedJson))
+      dispatch(fetchSuccess())
+
+      return ({ success: true, data })
+    }).catch((data) => {
+      const errors = data
+      dispatch(fetchFailure(errors))
+
+      return { success: false, result: errors }
     })
-    
+
     return promise
   }
 }
