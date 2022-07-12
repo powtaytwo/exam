@@ -1,15 +1,15 @@
-import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useRef, useState } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 import {
-  Menu, MenuItem, IconButton, ListItemIcon, ListItemText
-} from '@mui/material';
+  Menu, MenuItem, IconButton, ListItemIcon, ListItemText,
+} from '@mui/material'
 
 import Iconify from '../../../../shared/components/Iconify'
 
-export default function UserMoreMenu() {
-  const ref = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
+export default function UserMoreMenu(){
+  const ref = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
@@ -42,5 +42,5 @@ export default function UserMoreMenu() {
         </MenuItem>
       </Menu>
     </>
-  );
+  )
 }

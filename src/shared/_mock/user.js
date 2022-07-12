@@ -1,7 +1,7 @@
 const users = [
   {
     id: 1,
-    avatarUrl: `/static/mock-images/avatars/avatar_5.jpg`,
+    avatarUrl: '/static/mock-images/avatars/avatar_5.jpg',
     name: 'Ameera Chiong',
     company: 'Content House, Inc.',
     isVerified: true,
@@ -10,7 +10,7 @@ const users = [
   },
   {
     id: 2,
-    avatarUrl: `/static/mock-images/avatars/avatar_1.jpg`,
+    avatarUrl: '/static/mock-images/avatars/avatar_1.jpg',
     name: 'Gev Viray',
     company: 'Content House, Inc.',
     isVerified: true,
@@ -19,7 +19,7 @@ const users = [
   },
   {
     id: 3,
-    avatarUrl: `/static/mock-images/avatars/avatar_4.jpg`,
+    avatarUrl: '/static/mock-images/avatars/avatar_4.jpg',
     name: 'Pearl Sevilleno',
     company: 'Realbase',
     isVerified: true,
@@ -28,7 +28,7 @@ const users = [
   },
   {
     id: 4,
-    avatarUrl: `/static/mock-images/avatars/avatar_default.jpg`,
+    avatarUrl: '/static/mock-images/avatars/avatar_default.jpg',
     name: 'Von Leonardo',
     company: 'Content House, Inc.',
     isVerified: true,
@@ -37,7 +37,7 @@ const users = [
   },
   {
     id: 5,
-    avatarUrl: `/static/mock-images/avatars/avatar_3.jpg`,
+    avatarUrl: '/static/mock-images/avatars/avatar_3.jpg',
     name: 'Zen Batan',
     company: 'Content House, Inc.',
     isVerified: true,
@@ -46,4 +46,4 @@ const users = [
   },
 ]
 
-export default users;
+export default users

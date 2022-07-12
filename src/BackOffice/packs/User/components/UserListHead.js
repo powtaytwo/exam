@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import {
-  Box, Checkbox, TableRow, TableCell, TableHead, TableSortLabel
-} from '@mui/material';
+  Box, Checkbox, TableRow, TableCell, TableHead, TableSortLabel,
+} from '@mui/material'
 
 const visuallyHidden = {
   border: 0,
@@ -14,30 +15,14 @@ const visuallyHidden = {
   position: 'absolute',
   whiteSpace: 'nowrap',
   clip: 'rect(0 0 0 0)',
-};
+}
 
-UserListHead.propTypes = {
-  order: PropTypes.oneOf(['asc', 'desc']),
-  orderBy: PropTypes.string,
-  rowCount: PropTypes.number,
-  headLabel: PropTypes.array,
-  numSelected: PropTypes.number,
-  onRequestSort: PropTypes.func,
-  onSelectAllClick: PropTypes.func,
-};
+export default function UserListHead(props){
+  const { order, orderBy, rowCount, headLabel, numSelected, onRequestSort, onSelectAllClick } = props
 
-export default function UserListHead({
-  order,
-  orderBy,
-  rowCount,
-  headLabel,
-  numSelected,
-  onRequestSort,
-  onSelectAllClick,
-}) {
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
+  const createSortHandler = property => (event) => {
+    onRequestSort(event, property)
+  }
 
   return (
     <TableHead>
@@ -49,7 +34,7 @@ export default function UserListHead({
             onChange={onSelectAllClick}
           />
         </TableCell>
-        {headLabel.map((headCell) => (
+        {headLabel.map(headCell => (
           <TableCell
             key={headCell.id}
             align={headCell.alignRight ? 'right' : 'left'}
@@ -70,5 +55,15 @@ export default function UserListHead({
         ))}
       </TableRow>
     </TableHead>
-  );
+  )
+}
+
+UserListHead.propTypes = {
+  order: PropTypes.oneOf(['asc', 'desc']),
+  orderBy: PropTypes.string,
+  rowCount: PropTypes.number,
+  headLabel: PropTypes.array,
+  numSelected: PropTypes.number,
+  onRequestSort: PropTypes.func,
+  onSelectAllClick: PropTypes.func,
 }

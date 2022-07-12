@@ -1,28 +1,25 @@
-
 import React from 'react'
-import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
-import { Link as RouterLink } from 'react-router-dom';
+import { filter } from 'lodash'
+import { sentenceCase } from 'change-case'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
-import useReduxAction from '../../../shared/hooks/useReduxAction'
-import useSetState from '../../../shared/hooks/useSetState'
-
 import {
   Avatar, Button, Card, Checkbox, Container, Stack,
   Table, TableRow, TableBody, TableCell, Typography, TableContainer, TablePagination,
-} from '@mui/material';
+} from '@mui/material'
+import useReduxAction from '../../../shared/hooks/useReduxAction'
+import useSetState from '../../../shared/hooks/useSetState'
 
 import Iconify from '../../../shared/components/Iconify'
 import Page from '../../../shared/components/Page'
-import Label from '../../../shared/components/Label';
-import Scrollbar from '../../../shared/components/Scrollbar';
-import SearchNotFound from '../../../shared/components/SearchNotFound';
+import Label from '../../../shared/components/Label'
+import Scrollbar from '../../../shared/components/Scrollbar'
+import SearchNotFound from '../../../shared/components/SearchNotFound'
 
 import { UserListHead, UserListToolbar, UserMoreMenu } from './components'
 
 import userList from '../../../shared/_mock/user'
-import PageContext from '../../../shared/contexts/pageContext'
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
@@ -31,35 +28,35 @@ const TABLE_HEAD = [
   { id: 'isVerified', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
-];
+]
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
+function descendingComparator(a, b, orderBy){
+  if (b[orderBy] < a[orderBy]){
+    return -1
   }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
+  if (b[orderBy] > a[orderBy]){
+    return 1
   }
-  return 0;
+  return 0
 }
 
-function getComparator(order, orderBy) {
+function getComparator(order, orderBy){
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    : (a, b) => -descendingComparator(a, b, orderBy)
 }
 
-function applySortFilter(array, comparator, query) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
+function applySortFilter(array, comparator, query){
+  const stabilizedThis = array.map((el, index) => [el, index])
   stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+    const order = comparator(a[0], b[0])
+    if (order !== 0) return order
+    return a[1] - b[1]
+  })
+  if (query){
+    return filter(array, _user => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1)
   }
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis.map(el => el[0])
 }
 
 const defaultState = {
@@ -71,11 +68,9 @@ const defaultState = {
   selected: [],
 }
 
-const User = () => {
+function User(){
   const [state, setState] = useSetState(defaultState)
   const { filterName, order, orderBy, page, rowsPerPage, selected } = state
-
-
 
   useReduxAction('users', 'loadUsers', {}, [], {
     shouldPerformFn: (entityReducer) => {
@@ -85,46 +80,43 @@ const User = () => {
   })
 
   const entities = useSelector(reduxState => reduxState.entities)
-  //const { users } = entities
-
+  // const { users } = entities
   console.log(entities)
 
-  //console.log(entities)
-
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc';
+    const isAsc = orderBy === property && order === 'asc'
     setState({
       order: isAsc ? 'desc' : 'asc',
-      orderBy: property
+      orderBy: property,
     })
   }
 
   const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = userList.map((n) => n.name);
+    if (event.target.checked){
+      const newSelecteds = userList.map(n => n.name)
       setState({ selected: newSelecteds })
-      return;
+      return
     }
     setState({ selected: [] })
-  };
+  }
 
   const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+    const selectedIndex = selected.indexOf(name)
+    let newSelected = []
+    if (selectedIndex === -1){
+      newSelected = newSelected.concat(selected, name)
+    } else if (selectedIndex === 0){
+      newSelected = newSelected.concat(selected.slice(1))
+    } else if (selectedIndex === selected.length - 1){
+      newSelected = newSelected.concat(selected.slice(0, -1))
+    } else if (selectedIndex > 0){
+      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1))
     }
     setState({ selected: newSelected })
   }
 
   const handleChangePage = (event, newPage) => {
-    setState({ page: newPage });
+    setState({ page: newPage })
   }
 
   const handleChangeRowsPerPage = (event) => {
@@ -138,14 +130,13 @@ const User = () => {
     setState({ filterNmae: event.target.value })
   }
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userList.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userList.length) : 0
 
-  const filteredUsers = applySortFilter(userList, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(userList, getComparator(order, orderBy), filterName)
 
-  const isUserNotFound = filteredUsers.length === 0;
+  const isUserNotFound = filteredUsers.length === 0
 
   return (
-    // <PageContext.Provider>
     <Page title="User">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -174,8 +165,8 @@ const User = () => {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
-                    const isItemSelected = selected.indexOf(name) !== -1;
+                    const { id, name, role, status, company, avatarUrl, isVerified } = row
+                    const isItemSelected = selected.indexOf(name) !== -1
 
                     return (
                       <TableRow
@@ -187,7 +178,7 @@ const User = () => {
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
-                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={isItemSelected} onChange={event => handleClick(event, name)} />
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -210,7 +201,7 @@ const User = () => {
                           <UserMoreMenu />
                         </TableCell>
                       </TableRow>
-                    );
+                    )
                   })}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
@@ -244,7 +235,6 @@ const User = () => {
         </Card>
       </Container>
     </Page>
-    // </PageContext.Provider>
   )
 }
 
