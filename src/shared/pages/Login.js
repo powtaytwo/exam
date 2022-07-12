@@ -1,23 +1,22 @@
-import { Link as RouterLink } from 'react-router-dom';
-// @mui
-import { styled } from '@mui/material/styles';
-import { Card, Link, Container, Typography } from '@mui/material';
-// hooks
-import useResponsive from '../hooks/useResponsive';
-// components
-import Page from '../components/Page';
-import Logo from '../components/Logo';
-// sections
-import { LoginForm } from '../sections/auth/login';
-import AuthSocial from '../sections/auth/AuthSocial';
+import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
-// ----------------------------------------------------------------------
+import { styled } from '@mui/material/styles'
+import { Card, Link, Container, Typography } from '@mui/material'
+
+import useResponsive from '@hooks/useResponsive'
+
+import Page from '@components/Page'
+import Logo from '@components/Logo'
+
+import { LoginForm } from '../sections/auth/login'
+import AuthSocial from '../sections/auth/AuthSocial'
 
 const RootStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     display: 'flex',
   },
-}));
+}))
 
 const HeaderStyle = styled('header')(({ theme }) => ({
   top: 0,
@@ -33,7 +32,7 @@ const HeaderStyle = styled('header')(({ theme }) => ({
     alignItems: 'flex-start',
     padding: theme.spacing(7, 5, 0, 7),
   },
-}));
+}))
 
 const SectionStyle = styled(Card)(({ theme }) => ({
   width: '100%',
@@ -42,7 +41,7 @@ const SectionStyle = styled(Card)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   margin: theme.spacing(2, 0, 2, 2),
-}));
+}))
 
 const ContentStyle = styled('div')(({ theme }) => ({
   maxWidth: 480,
@@ -52,14 +51,12 @@ const ContentStyle = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   flexDirection: 'column',
   padding: theme.spacing(12, 0),
-}));
+}))
 
-// ----------------------------------------------------------------------
+export default function Login(){
+  const smUp = useResponsive('up', 'sm')
 
-export default function Login() {
-  const smUp = useResponsive('up', 'sm');
-
-  const mdUp = useResponsive('up', 'md');
+  const mdUp = useResponsive('up', 'md')
 
   return (
     <Page title="Login">
@@ -69,7 +66,7 @@ export default function Login() {
 
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-              Don’t have an account? {''}
+              Don’t have an account?
               <Link variant="subtitle2" component={RouterLink} to="/register">
                 Get started
               </Link>
@@ -110,5 +107,5 @@ export default function Login() {
         </Container>
       </RootStyle>
     </Page>
-  );
+  )
 }

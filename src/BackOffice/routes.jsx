@@ -1,13 +1,13 @@
 import React from 'react'
 import { Navigate, useRoutes } from 'react-router-dom'
 
-import DashboardLayout from '../shared/layouts/dashboard'
-import LogoOnlyLayout from '../shared/layouts/LogoOnlyLayout'
+import DashboardLayout from '@layouts/dashboard'
+import LogoOnlyLayout from '@layouts/LogoOnlyLayout'
+
+import DashboardApp from '@pages/DashboardApp'
+import NotFound from '@pages/Page404'
 
 import User from './packs/User'
-
-import DashboardApp from '../shared/pages/DashboardApp'
-import NotFound from '../shared/pages/Page404'
 
 export default function Router(){
   return useRoutes([
@@ -15,7 +15,7 @@ export default function Router(){
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
-      { path: 'app', element: <DashboardApp /> },
+        { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
       ],
     },

@@ -6,7 +6,7 @@ import {
   Toolbar, Tooltip, IconButton, Typography, OutlinedInput, InputAdornment,
 } from '@mui/material'
 
-import Iconify from '../../../../shared/components/Iconify'
+import Iconify from '@components/Iconify'
 
 const RootStyle = styled(Toolbar)(({ theme }) => ({
   height: 96,

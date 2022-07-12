@@ -4,12 +4,11 @@ import { configureStore } from '@reduxjs/toolkit'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 
-import ThemeProvider from './theme'
-
-import createRootReducer from './shared/redux/rootReducer'
-import lastModifiedMiddleware from './shared/redux/middleware/lastModified'
-import ScrollToTop from './shared/components/ScrollToTop'
+import createRootReducer from '@redux/rootReducer'
+import lastModifiedMiddleware from '@redux/middleware/lastModified'
+import ScrollToTop from '@components/ScrollToTop'
 import BackOfficeRoutes from './BackOffice/routes'
+import ThemeProvider from './theme'
 
 import './App.css'
 

@@ -8,14 +8,15 @@ import {
   Avatar, Button, Card, Checkbox, Container, Stack,
   Table, TableRow, TableBody, TableCell, Typography, TableContainer, TablePagination,
 } from '@mui/material'
-import useReduxAction from '../../../shared/hooks/useReduxAction'
-import useSetState from '../../../shared/hooks/useSetState'
 
-import Iconify from '../../../shared/components/Iconify'
-import Page from '../../../shared/components/Page'
-import Label from '../../../shared/components/Label'
-import Scrollbar from '../../../shared/components/Scrollbar'
-import SearchNotFound from '../../../shared/components/SearchNotFound'
+import useReduxAction from '@hooks/useReduxAction'
+import useSetState from '@hooks/useSetState'
+
+import Iconify from '@components/Iconify'
+import Label from '@components/Label'
+import Page from '@components/Page'
+import Scrollbar from '@components/Scrollbar'
+import SearchNotFound from '@components/SearchNotFound'
 
 import { UserListHead, UserListToolbar, UserMoreMenu } from './components'
 

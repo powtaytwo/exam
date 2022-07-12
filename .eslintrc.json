@@ -14,14 +14,17 @@
     "swal": "writable"
   },
   "parserOptions": {
-    "ecmaVersion": 12,
-    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
+    "ecmaVersion": "latest",
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true
     },
     "project": "jsconfig.json",
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "rules": {
     "arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }],
@@ -64,6 +67,24 @@
   },
   "settings": {
     "import/resolver": {
+      "alias": {
+        "map": [
+          ["@assets", "./src/shared/assets"],
+          ["@components", "./src/shared/components"],
+          ["@contexts", "./src/shared/contexts"],
+          ["@functions", "./src/shared/functions"],
+          ["@hooks", "./src/shared/hooks"],
+          ["@layouts", "./src/shared/layouts"],
+          ["@modals", "./src/shared/modals"],
+          ["@models", "./src/shared/models"],
+          ["@redux", "./src/shared/redux"],
+          ["@pages", "./src/shared/pages"],
+          ["@sections", "./src/sections"],
+          ["@styles", "./src/shared/styles"],
+          ["@themes", "./src/shared/themes"]
+        ],
+        "extensions": [".ts", ".js", ".jsx", ".json"]
+      },
       "babel-module": {}
     }
   }

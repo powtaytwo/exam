@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import useSetState from './useSetState'
-import useThunkDispatch from './useThunkDispatch'
+import useSetState from '@hooks/useSetState'
+import useThunkDispatch from '@hooks/useThunkDispatch'
 
-import reduxModules from '../redux/modules'
+import reduxModules from '@redux/modules'
 
 const defaultState = {
   result: {},
