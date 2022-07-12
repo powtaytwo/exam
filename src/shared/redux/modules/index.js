@@ -1,6 +1,8 @@
 import * as users from './user'
+import * as entities from '../entities'
 
 const modules = {
+    entities,
     users,
 }
 

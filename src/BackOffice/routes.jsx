@@ -7,6 +7,7 @@ import LogoOnlyLayout from '@layouts/LogoOnlyLayout'
 import DashboardApp from '@pages/DashboardApp'
 import NotFound from '@pages/Page404'
 
+import Users from './packs/Users'
 import User from './packs/User'
 
 export default function Router(){
@@ -16,7 +17,8 @@ export default function Router(){
       element: <DashboardLayout />,
       children: [
         { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
+        { path: 'user', element: <Users /> },
+        { path: 'user/*', element: <User /> },
       ],
     },
     {
