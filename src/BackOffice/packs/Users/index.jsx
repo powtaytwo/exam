@@ -147,7 +147,7 @@ function Users(){
   }
 
   const handleFilterByName = (event) => {
-    setState({ filterNmae: event.target.value })
+    setState({ filterName: event.target.value })
   }
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Object.values(users).length) : 0

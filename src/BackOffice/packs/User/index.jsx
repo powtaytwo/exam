@@ -24,7 +24,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
   margin: 'auto',
   justifyContent: 'center',
   flexDirection: 'column',
-  padding: theme.spacing(12, 0),
+  padding: theme.spacing(3, 0),
 }))
 
 function User(props){
