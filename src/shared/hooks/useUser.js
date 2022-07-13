@@ -8,7 +8,14 @@ import * as userActions from '@redux/modules/user'
 function createUser(userParams, dispatch){
   const { createUser: createFn } = userActions
 
-  return dispatch(createFn(userParams))
+  const id = Math.random().toString(36).substring(2, 9)
+  const newUser = {
+    ...userParams,
+    id,
+    avatarUrl: '/static/mock-images/avatars/avatar_default.jpg',
+  }
+
+  return dispatch(createFn(newUser))
 }
 
 function updateUser(userParams, dispatch){

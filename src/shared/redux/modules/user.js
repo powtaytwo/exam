@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr'
 import { Schemas } from '../schema'
-import { updateEntities } from '../entities'
+import { deleteEntity, updateEntities } from '../entities'
 
 import users from '../../_mock/user'
 
@@ -155,6 +155,62 @@ export function createUser(user){
     }).catch((data) => {
       const errors = data
       dispatch(createFailure(errors))
+
+      return { success: false, result: errors }
+    })
+
+    return promise
+  }
+}
+
+export function updateUser(user){
+  return (dispatch) => {
+    dispatch(updateRequest())
+
+    const promise = new Promise((resolve, reject) => {
+      if (user){
+        resolve({ data: user })
+        return
+      }
+
+      reject(new Error('No data'))
+    }).then(({ data }) => {
+      const normalizedJson = normalize(data, Schemas.USER)
+      dispatch(updateEntities(normalizedJson))
+      dispatch(updateSuccess())
+
+      return ({ success: true, result: data })
+    }).catch((data) => {
+      const errors = data
+      dispatch(updateFailure(errors))
+
+      return { success: false, result: errors }
+    })
+
+    return promise
+  }
+}
+
+export function deleteUser(user){
+  return (dispatch) => {
+    dispatch(deleteRequest())
+
+    const promise = new Promise((resolve, reject) => {
+      if (user){
+        resolve({ data: user })
+        return
+      }
+
+      reject(new Error('No data'))
+    }).then(({ data }) => {
+      const normalizedJson = normalize(data, Schemas.USER)
+      dispatch(deleteEntity(normalizedJson))
+      dispatch(deleteSuccess())
+
+      return ({ success: true, result: data })
+    }).catch((data) => {
+      const errors = data
+      dispatch(deleteFailure(errors))
 
       return { success: false, result: errors }
     })
