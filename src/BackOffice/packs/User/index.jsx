@@ -80,7 +80,7 @@ function User(props){
           return
         }
 
-        navigate('/dashboard/user', { replace: true })
+        navigate('/dashboard/users', { replace: true })
       })
     } else {
       updateFn(data).then(({ success, errors }) => {
@@ -89,7 +89,7 @@ function User(props){
           return
         }
 
-        navigate('/dashboard/user', { replace: true })
+        navigate('/dashboard/users', { replace: true })
       })
     }
   }

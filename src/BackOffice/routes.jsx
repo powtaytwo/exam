@@ -17,9 +17,9 @@ export default function Router(){
       element: <DashboardLayout />,
       children: [
         { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <Users /> },
-        { path: 'user/new', element: <User isNew /> },
-        { path: 'user/:userId', element: <User /> },
+        { path: 'users', element: <Users /> },
+        { path: 'users/new', element: <User isNew /> },
+        { path: 'users/:userId', element: <User /> },
       ],
     },
     {

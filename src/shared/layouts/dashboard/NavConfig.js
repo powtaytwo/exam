@@ -10,8 +10,8 @@ const navConfig = [
     icon: getIcon('eva:pie-chart-2-fill'),
   },
   {
-    title: 'user',
-    path: '/dashboard/user',
+    title: 'users',
+    path: '/dashboard/users',
     icon: getIcon('eva:people-fill'),
   },
 ]

@@ -164,7 +164,7 @@ function Users(){
             <Typography variant="h4" gutterBottom>
               User
             </Typography>
-            <Button variant="contained" component={RouterLink} to="/dashboard/user/new" startIcon={<Iconify icon="eva:plus-fill" />}>
+            <Button variant="contained" component={RouterLink} to="/dashboard/users/new" startIcon={<Iconify icon="eva:plus-fill" />}>
               Create User
             </Button>
           </Stack>
