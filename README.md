@@ -72,11 +72,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 1. Clone this repository and push into your own Github workspace as a public repository (You can create a new Github account if you do not have one yet).
 2. **DO NOT FORK** as to not share your exam with other candidates.
-3. Create a new branch to push your changes into and name it exam/[yourLastName].
+3. Create a new branch to push your changes into and name it `exam/[yourLastName]`.
 4. Task Description:
    - Go through the setup instructions above to be able to Run the app in the development mode on your computer
    - Create a "companies" entity and a basic CRUD for it
-   - You can use the Users page as reference, just create your own mock data for 5 records with properties name, description and vip
+   - You can use the Users page as reference, just create your own mock data for 5 records with properties: name, description and vip
    - Description is not required when creating or updating companies
    - Should use React Hooks and store in Redux same with Users
 5. Once done, create a Pull Request to the main branch of your repo then reply to the sender of the exam email only with the URL for your public repo/PR.
