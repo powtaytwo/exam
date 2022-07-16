@@ -23,13 +23,10 @@ export default function DashboardApp(){
             <ContentStyle>
               <Stack spacing={{ xs: 0.5, sm: 1.5 }}>
                 <Typography variant="h6">
-                  Instructions
+                  Content House Exam
                 </Typography>
                 <Typography variant="body 2">
-                  1. --
-                </Typography>
-                <Typography variant="body 2">
-                  2. --
+                  Please see the readme for the exam instructions...
                 </Typography>
               </Stack>
             </ContentStyle>
