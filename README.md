@@ -76,7 +76,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 4. Task Description:
    - Go through the setup instructions above to be able to Run the app in the development mode on your computer
    - Create a "companies" entity and a basic CRUD for it
-   - You can use the Users page as reference, just create your own mock data for 5 records with properties: name, description and vip
+   - You can use the Users page as reference, just create your own mock data for 5 records with properties: `name`, `description` and `vip`
    - Description is not required when creating or updating companies
    - Should use React Hooks and store in Redux same with Users
 5. Once done, create a Pull Request to the main branch of your repo then reply to the sender of the exam email only with the URL for your public repo/PR.
