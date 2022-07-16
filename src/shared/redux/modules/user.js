@@ -2,7 +2,7 @@ import { normalize } from 'normalizr'
 import { Schemas } from '../schema'
 import { deleteEntity, updateEntities } from '../entities'
 
-import users from '../../_mock/user'
+import users from '../../_mock/users'
 
 const FETCH_REQUEST = 'contenthouse/user/FETCH_REQUEST'
 const FETCH_SUCCESS = 'contenthouse/user/FETCH_SUCCESS'
