@@ -1,19 +1,24 @@
-import React from 'react'
-import Iconify from '../../components/Iconify'
+import React from "react";
+import Iconify from "../../components/Iconify";
 
-const getIcon = name => <Iconify icon={name} width={22} height={22} />
+const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 const navConfig = [
   {
-    title: 'dashboard',
-    path: '/dashboard/app',
-    icon: getIcon('eva:pie-chart-2-fill'),
+    title: "dashboard",
+    path: "/dashboard/app",
+    icon: getIcon("eva:pie-chart-2-fill"),
   },
   {
-    title: 'users',
-    path: '/dashboard/users',
-    icon: getIcon('eva:people-fill'),
+    title: "users",
+    path: "/dashboard/users",
+    icon: getIcon("eva:people-fill"),
   },
-]
+  {
+    title: "companies",
+    path: "/dashboard/companies",
+    icon: getIcon("eva:people-fill"),
+  },
+];
 
-export default navConfig
+export default navConfig;
